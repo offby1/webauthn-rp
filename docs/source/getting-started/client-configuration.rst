@@ -4,7 +4,7 @@ Client Configuration
 
 The example used in this tutorial will have a simple client that allows users to register
 a username with a credential and verify them. It'll be assumed that the flask server
-backend will be running on localhost:5000. To perform a post request at an endpoint,
+backend will be running on localhost:6543. To perform a post request at an endpoint,
 we can then use:
 
 .. literalinclude:: ../../../examples/flask/templates/app.html

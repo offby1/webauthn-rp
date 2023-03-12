@@ -163,7 +163,7 @@ after cloning this project locally:
     $ python -m examples.flask.app
     ```
 
-5. Open a browser to `localhost:5000` and register a credential to a username.
+5. Open a browser to `localhost:6543` and register a credential to a username.
 6. Authenticate using the same username and credential.
 7. Exit the example program.
 

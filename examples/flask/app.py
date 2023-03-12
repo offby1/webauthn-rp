@@ -122,7 +122,7 @@ class RegistrarImpl(CredentialsRegistrar):
 
 ##### Webauthn-RP configuration
 
-APP_ORIGIN = 'http://localhost:5000'
+APP_ORIGIN = 'http://localhost:6543'
 APP_TIMEOUT = 60000
 APP_RELYING_PARTY = PublicKeyCredentialRpEntity(name='localhost',
                                                 id='localhost')
@@ -326,7 +326,7 @@ if __name__ == '__main__':
     try:
         with app.app_context():
             db.create_all()
-        app.run(host='localhost', port='5000')
+        app.run(host='localhost', port='6543')
     finally:
         if os.path.exists(DATABASE_PATH):
             os.remove(DATABASE_PATH)

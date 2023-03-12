@@ -23,7 +23,7 @@ function base64decode(s) {
 }
 
 async function post(endpoint, params) {
-  return fetch('http://localhost:5000' + endpoint, {
+  return fetch('http://localhost:6543' + endpoint, {
     credentials: 'include',
     body: params,
     method: 'POST',
