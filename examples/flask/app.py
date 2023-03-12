@@ -324,7 +324,8 @@ def index():
 
 if __name__ == '__main__':
     try:
-        db.create_all()
+        with app.app_context():
+            db.create_all()
         app.run(host='localhost', port='5000')
     finally:
         if os.path.exists(DATABASE_PATH):
