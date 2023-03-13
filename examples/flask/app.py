@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import secrets
 import time
@@ -24,6 +25,7 @@ from webauthn_rp.types import (AttestationObject, AttestationType,
                                PublicKeyCredentialUserEntity, TrustedPath)
 
 from flask import Flask, render_template, request
+from flask.logging import default_handler
 
 # Flask & SQLAlchemy configuration
 
@@ -241,6 +243,7 @@ def registration_response():
 @app.route("/authentication/request/", methods=["POST"])
 def authentication_request():
     username = request.form["username"]
+    _log.info("authentication_request: username = %s", username)
 
     user_model = User.query.filter_by(username=username).first()
     if user_model is None:
@@ -288,6 +291,7 @@ def authentication_response():
         challengeID = request.form["challengeID"]
         credential = parse_public_key_credential(json.loads(request.form["credential"]))
         username = request.form["username"]
+        _log.info("authentication_response: username = %s", username)
     except Exception:
         return ("Could not parse input data", 400)
 
@@ -332,10 +336,20 @@ def index():
 # Main
 
 if __name__ == "__main__":
+    logging.getLogger().setLevel(logging.INFO)
+
+    root = logging.getLogger()
+    root.addHandler(default_handler)
+    for handler in root.handlers:
+        handler.formatter.datefmt = '%Y-%m-%dT%H:%M:%S%z'
+
+    _log = logging.getLogger(__name__)
+    _log.info("Hello world %s", dir(default_handler))
+
     try:
         with app.app_context():
             db.create_all()
-        app.run(host="localhost", port="6543")
+        app.run(host="localhost", port="6543", debug=True)
     finally:
         if os.path.exists(DATABASE_PATH):
             os.remove(DATABASE_PATH)
