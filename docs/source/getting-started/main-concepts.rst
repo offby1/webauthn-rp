@@ -17,7 +17,7 @@ Why WebAuthn?
 
 Web Authentication enables multi-factor authentication using public key
 cryptography and trusted hardware platforms (authenticators) that can generate
-private and pubilc key pairs to perform signing and verification on a user's behalf.
+private and public key pairs to perform signing and verification on a user's behalf.
 Compared to other multi-factor authentication techniques, some of the benefits that
 the Web Authentication specification aims to bring are:
 
